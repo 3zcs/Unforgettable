@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Unforgettable</string>
+    <string name="word">Word or Phrase</string>
+    <string name="meaning">Meaning</string>
+    <string name="phrase">put the word in a sentence</string>
+    <string name="empty_list">You don\'t have any word yet</string>
+</resources>

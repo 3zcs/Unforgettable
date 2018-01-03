@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "286802839413",
+    "firebase_url": "https://unforgettable-bbd09.firebaseio.com",
+    "project_id": "unforgettable-bbd09",
+    "storage_bucket": "unforgettable-bbd09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286802839413:android:9a3b54748987a922",
+        "android_client_info": {
+          "package_name": "unforgettable.azcs.me.unforgettable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286802839413-nfoljgnsrphnbhj8881dquvjct3k7b3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "unforgettable.azcs.me.unforgettable",
+            "certificate_hash": "a4b4b685008d8823a544b5a0f6884616312df4c3"
+          }
+        },
+        {
+          "client_id": "286802839413-ulsj6jhrhqssibpar5hum9h80cu5j1c5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_X7iGxU-pUvGZ_jKvkN2AZztYbMxP3d0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286802839413-ulsj6jhrhqssibpar5hum9h80cu5j1c5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
