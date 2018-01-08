@@ -2,9 +2,9 @@ package unforgettable.azcs.me.unforgettable;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(Object o) {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 

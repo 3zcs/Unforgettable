@@ -11,21 +11,42 @@ import java.util.List;
  */
 
 public class Word implements Parcelable {
-    String word;
-    String meaning;
-    List<String> practice = new ArrayList<>();
+    public static final Creator<Word> CREATOR = new Creator<Word>() {
+        @Override
+        public Word createFromParcel(Parcel in) {
+            return new Word(in);
+        }
 
+        @Override
+        public Word[] newArray(int size) {
+            return new Word[size];
+        }
+    };
+    private String id;
+    private String word;
+    private String meaning;
+    private List<Sentence> practice = new ArrayList<>();
 
-    protected Word(Parcel in) {
-        word = in.readString();
-        meaning = in.readString();
-        practice = in.createStringArrayList();
-    }
-
-    public Word(String word, String meaning, List<String> practice) {
+    Word(String id, String word, String meaning, List<Sentence> practice) {
+        this.id = id;
         this.word = word;
         this.meaning = meaning;
         this.practice = practice;
+    }
+
+    protected Word(Parcel in) {
+        id = in.readString();
+        word = in.readString();
+        meaning = in.readString();
+        in.readList(practice, Sentence.class.getClassLoader());
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getWord() {
@@ -44,25 +65,14 @@ public class Word implements Parcelable {
         this.meaning = meaning;
     }
 
-    public List<String> getPractice() {
+    public List<Sentence> getPractice() {
         return practice;
     }
 
-    public void setPractice(List<String> practice) {
+    public void setPractice(List<Sentence> practice) {
         this.practice = practice;
     }
 
-    public static final Creator<Word> CREATOR = new Creator<Word>() {
-        @Override
-        public Word createFromParcel(Parcel in) {
-            return new Word(in);
-        }
-
-        @Override
-        public Word[] newArray(int size) {
-            return new Word[size];
-        }
-    };
 
     @Override
     public int describeContents() {
@@ -71,8 +81,9 @@ public class Word implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(word);
         dest.writeString(meaning);
-        dest.writeStringList(practice);
+        dest.writeTypedList(practice);
     }
 }
