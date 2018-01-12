@@ -22,6 +22,9 @@ public class Sentence implements Parcelable {
     private String sentence;
     private String key;
 
+    public Sentence() {
+    }
+
     public Sentence(String sentence, String key) {
         this.sentence = sentence;
         this.key = key;

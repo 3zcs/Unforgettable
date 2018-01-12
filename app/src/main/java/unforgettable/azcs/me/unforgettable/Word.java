@@ -27,6 +27,9 @@ public class Word implements Parcelable {
     private String meaning;
     private List<Sentence> practice = new ArrayList<>();
 
+    public Word() {
+    }
+
     Word(String id, String word, String meaning, List<Sentence> practice) {
         this.id = id;
         this.word = word;

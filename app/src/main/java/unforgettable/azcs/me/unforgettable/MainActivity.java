@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference wordDatabase;
     FirebaseUser user;
     List<Word> wordList;
+    WordsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,11 @@ public class MainActivity extends AppCompatActivity {
         addFloatingActionButton = findViewById(R.id.addFloatingActionButton);
         emptyList = findViewById(R.id.emptyText);
         wordList = new ArrayList<>();
+        adapter = new WordsAdapter(wordList, this);
         user = FirebaseAuth.getInstance().getCurrentUser();
         wordDatabase = FirebaseDatabase.getInstance().getReference(user.getUid());
         WordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        WordRecyclerView.setAdapter(new WordsAdapter(null,this));
+        WordRecyclerView.setAdapter(adapter);
 
         addFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 Log.d("Done", wordList.toString());
+                adapter.notifyDataSetChanged();
             }
 
             @Override

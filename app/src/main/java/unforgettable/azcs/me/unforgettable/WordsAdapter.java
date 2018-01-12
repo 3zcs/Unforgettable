@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by abdulazizalawshan on 12/16/17.
@@ -15,10 +16,10 @@ import java.util.ArrayList;
 
 public class WordsAdapter extends RecyclerView.Adapter<WordsAdapter.WordsViewHolder> {
 
-    ArrayList<Word> words = new ArrayList<>();
-    Context context;
+    private List<Word> words = new ArrayList<>();
+    private Context context;
 
-    public WordsAdapter(ArrayList<Word> words, Context context) {
+    public WordsAdapter(List<Word> words, Context context) {
         this.words = words;
         this.context = context;
     }
