@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 public class Utils {
 
+    public static final String WORD = "WORD";
+
     public static boolean isValid(EditText editText){
         if (TextUtils.isEmpty(editText.getText().toString().trim())) {
             editText.setError("This field is required");
