@@ -1,8 +1,9 @@
 package unforgettable.azcs.me.unforgettable;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,9 +22,10 @@ public class ShowWordActivity extends AppCompatActivity {
     TextView mWord, mMeaning;
     RecyclerView mSentenceList;
     SentenceAdapter adapter;
+    Word word = null;
     private DatabaseReference mDatabase;
     private FirebaseUser user;
-    Word word = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class ShowWordActivity extends AppCompatActivity {
             word = getIntent().getParcelableExtra(WORD);
             mWord.setText(word.getWord());
             mMeaning.setText(word.getMeaning());
+            mSentenceList.setLayoutManager(new LinearLayoutManager(this));
             adapter = new SentenceAdapter(this,word.getPractice());
             mSentenceList.setAdapter(adapter);
         }else {
@@ -49,6 +52,7 @@ public class ShowWordActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.word_option_menu,menu);
+        getMenuInflater().inflate(R.menu.common_menu, menu);
         return true;
     }
 
@@ -62,6 +66,15 @@ public class ShowWordActivity extends AppCompatActivity {
                 startActivity(new Intent(this,MainActivity.class));
                 return true;
             case R.id.edit_word:
+                Intent intent = new Intent(this, EditWordActivity.class);
+                intent.putExtra("Word", word);
+                startActivity(intent);
+                return true;
+            case R.id.add_sentence:
+                return true;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

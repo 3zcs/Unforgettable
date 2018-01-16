@@ -22,7 +22,7 @@ public class WordsAdapter extends RecyclerView.Adapter<WordsAdapter.WordsViewHol
     private List<Word> words = new ArrayList<>();
     private Context context;
 
-    public WordsAdapter(List<Word> words, Context context) {
+    public WordsAdapter(Context context, List<Word> words) {
         this.words = words;
         this.context = context;
     }

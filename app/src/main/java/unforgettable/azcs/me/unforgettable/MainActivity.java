@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         addFloatingActionButton = findViewById(R.id.addFloatingActionButton);
         emptyList = findViewById(R.id.emptyText);
         wordList = new ArrayList<>();
-        adapter = new WordsAdapter(wordList, this);
+        adapter = new WordsAdapter(this, wordList);
         user = FirebaseAuth.getInstance().getCurrentUser();
         wordDatabase = FirebaseDatabase.getInstance().getReference(user.getUid());
         WordRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,5 +80,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", "Error");
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoginActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -41,7 +41,7 @@ public class Word implements Parcelable {
         id = in.readString();
         word = in.readString();
         meaning = in.readString();
-        in.readList(practice, Sentence.class.getClassLoader());
+        in.readTypedList(practice, Sentence.CREATOR);
     }
 
     public String getId() {
