@@ -2,6 +2,7 @@ package unforgettable.azcs.me.unforgettable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class EditWordActivity extends AppCompatActivity {
+public class EditWordActivity extends AppCompatActivity implements SentenceAdapter.IShowEditSentenceDialogListiner {
     TextView mWord, meaning;
     RecyclerView sentenceList;
     DatabaseReference wordDatabase;
@@ -34,7 +35,7 @@ public class EditWordActivity extends AppCompatActivity {
         mWord.setText(word.getWord());
         meaning.setText(word.getMeaning());
         sentenceList.setLayoutManager(new LinearLayoutManager(this));
-        sentenceList.setAdapter(new SentenceAdapter(this, word.getPractice()));
+        sentenceList.setAdapter(new SentenceAdapter(this, word.getPractice(), this));
     }
 
 
@@ -62,5 +63,12 @@ public class EditWordActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showEditSentenceDialogListener(Sentence sentence) {
+        FragmentManager fm = getSupportFragmentManager();
+        EditSentenceDialogFragment editSentenceDialogFragment = EditSentenceDialogFragment.newInstance(sentence);
+        editSentenceDialogFragment.show(fm, "");
     }
 }

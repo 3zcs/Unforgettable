@@ -40,7 +40,7 @@ public class ShowWordActivity extends AppCompatActivity {
             mWord.setText(word.getWord());
             mMeaning.setText(word.getMeaning());
             mSentenceList.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new SentenceAdapter(this,word.getPractice());
+            adapter = new SentenceAdapter(this, word.getPractice(), null);
             mSentenceList.setAdapter(adapter);
         }else {
             Toast.makeText(this,"Error Happen", Toast.LENGTH_SHORT).show();
