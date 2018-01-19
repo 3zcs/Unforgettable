@@ -2,6 +2,7 @@ package unforgettable.azcs.me.unforgettable;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static unforgettable.azcs.me.unforgettable.Utils.WORD;
 
-public class ShowWordActivity extends AppCompatActivity {
+public class ShowWordActivity extends AppCompatActivity {//implements onAddSentenceClickListener{
     TextView mWord, mMeaning;
     RecyclerView mSentenceList;
     SentenceAdapter adapter;
     Word word = null;
+    AddSentenceDialogFragment addSentenceDialogFragment;
     private DatabaseReference mDatabase;
     private FirebaseUser user;
 
@@ -71,6 +73,13 @@ public class ShowWordActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.add_sentence:
+                FragmentManager fm = getSupportFragmentManager();
+                if (fm.findFragmentByTag("add") != null)
+                    addSentenceDialogFragment = (AddSentenceDialogFragment) fm.findFragmentByTag("add");
+                else
+                    addSentenceDialogFragment = AddSentenceDialogFragment.newInstance();
+
+                addSentenceDialogFragment.show(fm, "add");
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
@@ -79,4 +88,15 @@ public class ShowWordActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public void onSaveClickListener(String sentence) {
+//        Toast.makeText(this,sentence,Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    public void onCancelClickListener() {
+//            if (addSentenceDialogFragment != null)
+//                addSentenceDialogFragment.dismiss();
+//    }
 }
