@@ -46,9 +46,20 @@ public class AddSentenceDialogFragment extends DialogFragment {
         getDialog().setTitle("title");
         sentence.requestFocus();
 
-//        onAddSentenceClickListener listener = (onAddSentenceClickListener) getActivity();
-//        listener.onCancelClickListener();
-//        listener.onSaveClickListener(sentence.getText().toString());
+        final onAddSentenceClickListener listener = (onAddSentenceClickListener) getActivity();
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onSaveClickListener(sentence.getText().toString());
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onCancelClickListener();
+            }
+        });
 
     }
 }
