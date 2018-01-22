@@ -50,7 +50,8 @@ public class AddSentenceDialogFragment extends DialogFragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onSaveClickListener(sentence.getText().toString());
+                if (Utils.isValid(sentence))
+                    listener.onSaveClickListener(sentence.getText().toString());
             }
         });
 

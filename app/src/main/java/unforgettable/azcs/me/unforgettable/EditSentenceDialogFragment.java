@@ -71,8 +71,10 @@ public class EditSentenceDialogFragment extends DialogFragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sentence.setSentence(editTextSentence.getText().toString());
-                listener.onSaveClickListener(sentence);
+                if (Utils.isValid(editTextSentence)) {
+                    sentence.setSentence(editTextSentence.getText().toString());
+                    listener.onSaveClickListener(sentence);
+                }
             }
         });
 

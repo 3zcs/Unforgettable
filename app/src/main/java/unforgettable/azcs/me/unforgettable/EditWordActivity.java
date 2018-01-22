@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class EditWordActivity extends AppCompatActivity implements SentenceAdapter.IShowEditSentenceDialogListiner,
         EditSentenceDialogFragment.onEditSentenceClickListener {
-    TextView mWord, meaning;
+    EditText mWord, meaning;
     RecyclerView sentenceList;
     DatabaseReference wordDatabase;
     List<Sentence> sentences;
@@ -63,11 +63,13 @@ public class EditWordActivity extends AppCompatActivity implements SentenceAdapt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save_word:
-                Word newWord = new Word(word.getId(), mWord.getText().toString(),
-                        meaning.getText().toString(),
-                        word.getPractice());
-                wordDatabase.child(word.getId()).setValue(newWord);
-                startActivity(new Intent(this, MainActivity.class));
+                if (Utils.isValid(mWord) && Utils.isValid(meaning)) {
+                    Word newWord = new Word(word.getId(), mWord.getText().toString(),
+                            meaning.getText().toString(),
+                            word.getPractice());
+                    wordDatabase.child(word.getId()).setValue(newWord);
+                    startActivity(new Intent(this, MainActivity.class));
+                }
                 return true;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
