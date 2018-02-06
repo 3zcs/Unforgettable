@@ -14,14 +14,14 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceDialogListiner, EditSentenceDialogFragment.onEditSentenceClickListener {
-    internal var mWord: EditText
-    internal var meaning: EditText
-    internal var sentenceList: RecyclerView
-    internal var wordDatabase: DatabaseReference
-    internal var sentences: MutableList<Sentence>
+    lateinit var mWord: EditText
+    lateinit var meaning: EditText
+    lateinit var sentenceList: RecyclerView
+    lateinit var wordDatabase: DatabaseReference
+    lateinit var sentences: MutableList<Sentence>
     internal var user: FirebaseUser? = null
     internal var word: Word? = null
-    internal var adapter: SentenceAdapter
+    lateinit var adapter: SentenceAdapter
     internal var editSentenceDialogFragment: EditSentenceDialogFragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceD
         when (item.itemId) {
             R.id.save_word -> {
                 if (Utils.isValid(mWord) && Utils.isValid(meaning)) {
-                    val newWord = Word(word!!.id, mWord.text.toString(),
+                    val newWord = Word(word!!.id!!, mWord.text.toString(),
                             meaning.text.toString(),
                             word!!.practice)
                     wordDatabase.child(word!!.id!!).setValue(newWord)
@@ -86,7 +86,7 @@ class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceD
             }
         }
         word!!.practice.removeAt(index)
-        word!!.practice.add(sentence)
+        word!!.practice.add(sentence!!)
         wordDatabase.child(word!!.id!!).setValue(word)
 
         if (editSentenceDialogFragment != null)

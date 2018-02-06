@@ -16,13 +16,13 @@ import com.google.firebase.database.*
 import unforgettable.azcs.me.unforgettable.Utils.WORD
 
 class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, SentenceAdapter.IShowEditSentenceDialogListiner {
-    internal var mWord: TextView
-    internal var mMeaning: TextView
-    internal var mSentenceList: RecyclerView
-    internal var adapter: SentenceAdapter
+    lateinit var mWord: TextView
+    lateinit var mMeaning: TextView
+    lateinit var mSentenceList: RecyclerView
+    lateinit var adapter: SentenceAdapter
     internal var word: Word? = null
-    internal var addSentenceDialogFragment: AddSentenceDialogFragment? = null
-    internal var sentenceList: MutableList<Sentence>
+    private var addSentenceDialogFragment: AddSentenceDialogFragment? = null
+    lateinit var sentenceList: MutableList<Sentence>
     private var mDatabase: DatabaseReference? = null
     private var user: FirebaseUser? = null
     private var sentanceRefrence: DatabaseReference? = null

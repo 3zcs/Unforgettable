@@ -8,19 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import unforgettable.azcs.me.unforgettable.Utils.WORD
-import java.util.*
 
 /**
  * Created by abdulazizalawshan on 12/16/17.
  */
 
-class WordsAdapter(private val context: Context, words: List<Word>) : RecyclerView.Adapter<WordsAdapter.WordsViewHolder>() {
+class WordsAdapter(private val context: Context, private val words: List<Word>) : RecyclerView.Adapter<WordsAdapter.WordsViewHolder>() {
 
-    private val words = ArrayList<Word>()
 
-    init {
-        this.words = words
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordsViewHolder {
         return WordsViewHolder(LayoutInflater.from(context).inflate(R.layout.item, parent, false))
@@ -34,14 +29,12 @@ class WordsAdapter(private val context: Context, words: List<Word>) : RecyclerVi
         return words.size
     }
 
-    internal inner class WordsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var mWord: TextView
-        var mMeaning: TextView
-        var word: Word
+    inner class WordsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        private var mWord: TextView = itemView.findViewById(R.id.word)
+        private var mMeaning: TextView = itemView.findViewById(R.id.meaning)
+        lateinit var word: Word
 
         init {
-            mWord = itemView.findViewById(R.id.word)
-            mMeaning = itemView.findViewById(R.id.meaning)
             itemView.setOnClickListener(this)
         }
 

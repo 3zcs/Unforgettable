@@ -38,7 +38,7 @@ class Sentence : Parcelable {
                 return Sentence(`in`)
             }
 
-            override fun newArray(size: Int): Array<Sentence> {
+            override fun newArray(size: Int): Array<Sentence?> {
                 return arrayOfNulls(size)
             }
         }

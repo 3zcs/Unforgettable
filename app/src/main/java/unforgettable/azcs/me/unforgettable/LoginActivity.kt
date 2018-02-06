@@ -11,10 +11,10 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    internal var hint: TextView
-    internal var password: EditText
-    internal var email: EditText
-    internal var login: Button
+    lateinit var hint: TextView
+    lateinit var password: EditText
+    lateinit var email: EditText
+    lateinit var login: Button
     private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,12 +62,12 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
+                        Log.d("LoginActivity", "signInWithEmail:success")
                         val user = mAuth!!.currentUser
                         updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
+                        Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
                         Toast.makeText(this@LoginActivity, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show()
                         updateUI(null)
@@ -79,10 +79,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(o: Any?) {
         startActivity(Intent(this, MainActivity::class.java))
-    }
-
-    companion object {
-        private val TAG = Class<*>::class.java!!.getSimpleName()
     }
 
 

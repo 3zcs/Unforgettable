@@ -18,13 +18,13 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     internal val TAG = javaClass.getSimpleName()
 
-    internal var emptyList: TextView
-    internal var WordRecyclerView: RecyclerView
-    internal var addFloatingActionButton: FloatingActionButton
-    internal var wordDatabase: DatabaseReference
+    lateinit var emptyList: TextView
+    lateinit var WordRecyclerView: RecyclerView
+    lateinit var addFloatingActionButton: FloatingActionButton
+    lateinit var wordDatabase: DatabaseReference
     internal var user: FirebaseUser? = null
-    internal var wordList: MutableList<Word>
-    internal var adapter: WordsAdapter
+    lateinit var wordList: MutableList<Word>
+    lateinit var adapter: WordsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,8 @@ class MainActivity : AppCompatActivity() {
                 wordList.clear()
                 for (snapshot in dataSnapshot.children) {
                     val word = snapshot.getValue<Word>(Word::class.java)
-                    wordList.add(word)
+                    if (word != null)
+                        wordList.add(word)
                 }
 
                 Log.d("Done", wordList.toString())

@@ -14,16 +14,16 @@ import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class AddWordActivity : AppCompatActivity() {
-    internal var word: EditText
-    internal var meaning: EditText
-    internal var sentence: EditText
-    internal var sentencelist: RecyclerView
-    internal var addButton: Button
-    internal var database: FirebaseDatabase
-    internal var myRef: DatabaseReference
-    internal var wordIdRef: DatabaseReference
-    internal var sentenceIdRef: DatabaseReference
-    internal var user: FirebaseUser? = null
+    lateinit var word: EditText
+    lateinit var meaning: EditText
+    lateinit var sentence: EditText
+    lateinit var sentencelist: RecyclerView
+    lateinit var addButton: Button
+    lateinit var database: FirebaseDatabase
+    lateinit var myRef: DatabaseReference
+    lateinit var wordIdRef: DatabaseReference
+    lateinit var sentenceIdRef: DatabaseReference
+    lateinit var user: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class AddWordActivity : AppCompatActivity() {
         sentencelist = findViewById(R.id.sentencesList)
         addButton = findViewById(R.id.addbtn)
         database = FirebaseDatabase.getInstance()
-        user = FirebaseAuth.getInstance().currentUser
+        user = FirebaseAuth.getInstance().currentUser!!
         addButton.setOnClickListener {
             if (Utils.isValid(word) && Utils.isValid(meaning)) {
                 myRef = database.getReference(user!!.uid)
@@ -50,7 +50,7 @@ class AddWordActivity : AppCompatActivity() {
     private fun getWord(): Word {
 
         if (TextUtils.isEmpty(sentence.text.toString()))
-            return Word(wordIdRef.key, word.text.toString(), meaning.text.toString(), null)
+            return Word(wordIdRef.key, word.text.toString(), meaning.text.toString(), ArrayList())
 
         sentenceIdRef = wordIdRef.push()
         val s = Sentence(sentence.text.toString(), sentenceIdRef.key)

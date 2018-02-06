@@ -12,10 +12,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : AppCompatActivity() {
-    internal var hint: TextView
-    internal var password: EditText
-    internal var email: EditText
-    internal var signup: Button
+    lateinit var hint: TextView
+    lateinit var password: EditText
+    private lateinit var email: EditText
+    private lateinit var signup: Button
     private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +43,12 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
+                        Log.d("RegisterActivity", "createUserWithEmail:success")
                         val user = mAuth!!.currentUser
                         updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                        Log.w("RegisterActivity", "createUserWithEmail:failure", task.exception)
                         Toast.makeText(this@RegisterActivity, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show()
                         updateUI(null)
@@ -69,10 +69,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null)
             startActivity(Intent(this, MainActivity::class.java))
-    }
-
-    companion object {
-        private val TAG = Class<*>::class.java!!.getSimpleName()
     }
 
 

@@ -26,13 +26,13 @@ class SentenceAdapter(private val context: Context, private val sentences: List<
         return sentences.size
     }
 
-    internal interface IShowEditSentenceDialogListiner {
+    interface IShowEditSentenceDialogListiner {
         fun showEditSentenceDialogListener(sentence: Sentence)
     }
 
-    internal inner class SentenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SentenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var textView: TextView
-        var sentence: Sentence
+        lateinit var sentence: Sentence
 
         init {
             textView = itemView.findViewById(android.R.id.text1)

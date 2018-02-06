@@ -12,11 +12,11 @@ class Word : Parcelable {
     var id: String? = null
     var word: String? = null
     var meaning: String? = null
-    var practice: List<Sentence> = ArrayList()
+    var practice: MutableList<Sentence> = ArrayList()
 
     constructor() {}
 
-    internal constructor(id: String, word: String, meaning: String, practice: List<Sentence>) {
+    internal constructor(id: String, word: String, meaning: String, practice: MutableList<Sentence>) {
         this.id = id
         this.word = word
         this.meaning = meaning
@@ -43,12 +43,13 @@ class Word : Parcelable {
     }
 
     companion object {
+        @JvmField
         val CREATOR: Parcelable.Creator<Word> = object : Parcelable.Creator<Word> {
             override fun createFromParcel(`in`: Parcel): Word {
                 return Word(`in`)
             }
 
-            override fun newArray(size: Int): Array<Word> {
+            override fun newArray(size: Int): Array<Word?> {
                 return arrayOfNulls(size)
             }
         }
