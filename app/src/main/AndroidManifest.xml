@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ShowWordActivity" />
-        <activity android:name=".EditWordActivity" />
-        <activity android:name=".AddWordActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".feature.main.MainActivity"></activity>
+        <activity android:name=".feature.show_word.ShowWordActivity" />
+        <activity android:name="unforgettable.azcs.me.unforgettable.feature.edit_word.EditWordActivity" />
+        <activity android:name="unforgettable.azcs.me.unforgettable.feature.add_word.AddWordActivity" />
+        <activity android:name=".feature.authentication.LoginActivity" />
+        <activity android:name=".feature.authentication.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

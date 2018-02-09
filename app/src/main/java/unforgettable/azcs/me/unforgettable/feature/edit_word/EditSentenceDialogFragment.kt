@@ -1,4 +1,4 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.feature.edit_word
 
 import android.content.Context
 import android.os.Bundle
@@ -6,8 +6,10 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import kotlinx.android.synthetic.main.dialog_fragment_edit_sentence.*
+import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
+import unforgettable.azcs.me.unforgettable.data.model.Sentence
 
 /**
  * Created by abdulazizalawshan on 1/16/18.
@@ -15,10 +17,6 @@ import android.widget.EditText
 
 class EditSentenceDialogFragment : DialogFragment() {
 
-    lateinit var save: Button
-    lateinit var delete: Button
-    lateinit var cancel: Button
-    lateinit var editTextSentence: EditText
     lateinit var listener: onEditSentenceClickListener
     internal var sentence: Sentence? = null
 
@@ -28,25 +26,22 @@ class EditSentenceDialogFragment : DialogFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editTextSentence = view!!.findViewById(R.id.sentence)
-        save = view.findViewById(R.id.btn_save)
-        delete = view.findViewById(R.id.btn_delete)
-        cancel = view.findViewById(R.id.btn_cancel)
+
         val args = arguments
         if (args != null && args.containsKey("sentence")) {
             sentence = args.getParcelable("sentence")
-            editTextSentence.setText(sentence!!.sentence)
+            etSentence.setText(sentence!!.sentence)
         }
         dialog.setTitle("title")
-        editTextSentence.requestFocus()
+        etSentence.requestFocus()
 
-        cancel.setOnClickListener { listener.onCancelClickListener() }
+        btnCancel.setOnClickListener { listener.onCancelClickListener() }
 
-        delete.setOnClickListener { listener.onDeleteClickListener(sentence) }
+        btnDelete.setOnClickListener { listener.onDeleteClickListener(sentence) }
 
-        save.setOnClickListener {
-            if (Utils.isValid(editTextSentence)) {
-                sentence!!.sentence = editTextSentence.text.toString()
+        btnSave.setOnClickListener {
+            if (Utils.isValid(etSentence)) {
+                sentence!!.sentence = etSentence.text.toString()
                 listener.onSaveClickListener(sentence)
             }
         }

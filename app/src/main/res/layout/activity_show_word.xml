@@ -4,36 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="unforgettable.azcs.me.unforgettable.ShowWordActivity">
+    tools:context="unforgettable.azcs.me.unforgettable.feature.show_word.ShowWordActivity">
 
     <TextView
-        android:id="@+id/word"
+        android:id="@+id/tvWord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        tools:text="TextView"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TextView" />
 
     <TextView
-        android:id="@+id/meaning"
+        android:id="@+id/tvMeaning"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        tools:text="TextView"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWord"
+        tools:text="TextView" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/sentencesList"
+        android:id="@+id/rvSentences"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
@@ -43,5 +43,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meaning" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMeaning" />
 </android.support.constraint.ConstraintLayout>

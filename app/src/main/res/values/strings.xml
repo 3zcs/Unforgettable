@@ -4,4 +4,13 @@
     <string name="meaning">Meaning</string>
     <string name="phrase">put the word in a sentence</string>
     <string name="empty_list">You don\'t have any word yet</string>
+    <string name="add">Add</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in_suggestion">if you don&quot;t have account sign up</string>
+    <string name="login_suggestion">if you have account login</string>
+    <string name="sentence">Sentence</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>

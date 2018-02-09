@@ -1,48 +1,50 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.feature.show_word
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_show_word.*
+import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.Utils.WORD
+import unforgettable.azcs.me.unforgettable.adapters.SentenceAdapter
+import unforgettable.azcs.me.unforgettable.data.model.Sentence
+import unforgettable.azcs.me.unforgettable.data.model.Word
+import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
+import unforgettable.azcs.me.unforgettable.feature.edit_word.EditWordActivity
+import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 
 class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, SentenceAdapter.IShowEditSentenceDialogListiner {
-    lateinit var mWord: TextView
-    lateinit var mMeaning: TextView
-    lateinit var mSentenceList: RecyclerView
+
     lateinit var adapter: SentenceAdapter
     internal var word: Word? = null
     private var addSentenceDialogFragment: AddSentenceDialogFragment? = null
     lateinit var sentenceList: MutableList<Sentence>
     private var mDatabase: DatabaseReference? = null
     private var user: FirebaseUser? = null
-    private var sentanceRefrence: DatabaseReference? = null
+    private var sentenceReference: DatabaseReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_word)
-        mWord = findViewById(R.id.word)
-        mMeaning = findViewById(R.id.meaning)
-        mSentenceList = findViewById(R.id.sentencesList)
+
         user = FirebaseAuth.getInstance().currentUser
         mDatabase = FirebaseDatabase.getInstance().getReference(user!!.uid)
         if (intent.extras != null && intent.extras!!.containsKey(WORD)) {
             word = intent.getParcelableExtra(WORD)
-            mWord.text = word!!.word
-            mMeaning.text = word!!.meaning
-            mSentenceList.layoutManager = LinearLayoutManager(this)
+            tvWord.text = word!!.word
+            tvMeaning.text = word!!.meaning
+            rvSentences.layoutManager = LinearLayoutManager(this)
             sentenceList = word!!.practice
             adapter = SentenceAdapter(this, sentenceList, this)
-            mSentenceList.adapter = adapter
+            rvSentences.adapter = adapter
         } else {
             Toast.makeText(this, "Error Happen", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
@@ -91,8 +93,8 @@ class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, Senten
     }
 
     override fun onSaveClickListener(sentence: String) {
-        sentanceRefrence = mDatabase!!.child(word!!.id!!).push()
-        val s = Sentence(sentence, sentanceRefrence!!.key)
+        sentenceReference = mDatabase!!.child(word!!.id!!).push()
+        val s = Sentence(sentence, sentenceReference!!.key)
         word!!.practice.add(s)
         mDatabase!!.child(word!!.id!!).setValue(word)
         if (addSentenceDialogFragment != null)

@@ -5,30 +5,30 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/sentence"
+        android:id="@+id/etSentence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:hint="Sentence"
+        android:hint="@string/sentence"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
-        android:text="save"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sentence" />
+        app:layout_constraintTop_toBottomOf="@+id/etSentence" />
 
 
     <Button
-        android:id="@+id/btn_cancel"
+        android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
@@ -36,8 +36,8 @@
         android:layout_marginTop="16dp"
         android:text="@android:string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_save"
+        app:layout_constraintEnd_toStartOf="@+id/btnSave"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@+id/sentence" />
+        app:layout_constraintTop_toBottomOf="@+id/etSentence" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
