@@ -1,24 +1,22 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.feature.add_word
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_add_word.*
+import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
+import unforgettable.azcs.me.unforgettable.data.model.Sentence
+import unforgettable.azcs.me.unforgettable.data.model.Word
+import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 import java.util.*
 
 class AddWordActivity : AppCompatActivity() {
-    lateinit var word: EditText
-    lateinit var meaning: EditText
-    lateinit var sentence: EditText
-    lateinit var sentencelist: RecyclerView
-    lateinit var addButton: Button
     lateinit var database: FirebaseDatabase
     lateinit var myRef: DatabaseReference
     lateinit var wordIdRef: DatabaseReference
@@ -28,15 +26,11 @@ class AddWordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_word)
-        word = findViewById(R.id.word)
-        meaning = findViewById(R.id.meaning)
-        sentence = findViewById(R.id.sentence)
-        sentencelist = findViewById(R.id.sentencesList)
-        addButton = findViewById(R.id.addbtn)
+
         database = FirebaseDatabase.getInstance()
         user = FirebaseAuth.getInstance().currentUser!!
-        addButton.setOnClickListener {
-            if (Utils.isValid(word) && Utils.isValid(meaning)) {
+        btnAdd.setOnClickListener {
+            if (Utils.isValid(etWord) && Utils.isValid(etMeaning)) {
                 myRef = database.getReference(user!!.uid)
                 wordIdRef = myRef.push()
                 myRef.child(wordIdRef.key).setValue(getWord())
@@ -48,13 +42,12 @@ class AddWordActivity : AppCompatActivity() {
     }
 
     private fun getWord(): Word {
-
-        if (TextUtils.isEmpty(sentence.text.toString()))
-            return Word(wordIdRef.key, word.text.toString(), meaning.text.toString(), ArrayList())
+        if (TextUtils.isEmpty(etSentence.text.toString()))
+            return Word(wordIdRef.key, etWord.text.toString(), etMeaning.text.toString(), ArrayList())
 
         sentenceIdRef = wordIdRef.push()
-        val s = Sentence(sentence.text.toString(), sentenceIdRef.key)
-        return Word(wordIdRef.key, word.text.toString(), meaning.text.toString(), object : ArrayList<Sentence>() {
+        val s = Sentence(etSentence.text.toString(), sentenceIdRef.key)
+        return Word(wordIdRef.key, etWord.text.toString(), etWord.text.toString(), object : ArrayList<Sentence>() {
             init {
                 add(s)
             }

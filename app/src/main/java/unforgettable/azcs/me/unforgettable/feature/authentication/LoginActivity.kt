@@ -1,35 +1,28 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.feature.authentication
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
+import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
+import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var hint: TextView
-    lateinit var password: EditText
-    lateinit var email: EditText
-    lateinit var login: Button
     private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        hint = findViewById(R.id.hint)
-        password = findViewById(R.id.password)
-        email = findViewById(R.id.email)
-        login = findViewById(R.id.login_button)
         mAuth = FirebaseAuth.getInstance()
 
-        hint.setOnClickListener { startActivity(Intent(this@LoginActivity, RegisterActivity::class.java)) }
+        tvHint.setOnClickListener { startActivity(Intent(this@LoginActivity, RegisterActivity::class.java)) }
 
-        login.setOnClickListener {
-            if (Utils.isValidEmail(email) && Utils.isValid(password)) {
+        btnLogin.setOnClickListener {
+            if (Utils.isValidEmail(etEmail) && Utils.isValid(etPassword)) {
                 signin()
             }
         }
@@ -58,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun signin() {
-        mAuth!!.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
+        mAuth!!.signInWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information

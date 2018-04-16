@@ -1,11 +1,14 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_sentence.*
+import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.data.model.Sentence
 
 /**
  * Created by abdulazizalawshan on 1/12/18.
@@ -15,7 +18,7 @@ class SentenceAdapter(private val context: Context, private val sentences: List<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SentenceViewHolder {
         return SentenceViewHolder(
-                LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false))
+                LayoutInflater.from(context).inflate(R.layout.item_sentence, parent, false))
     }
 
     override fun onBindViewHolder(holder: SentenceViewHolder, position: Int) {
@@ -30,18 +33,18 @@ class SentenceAdapter(private val context: Context, private val sentences: List<
         fun showEditSentenceDialogListener(sentence: Sentence)
     }
 
-    inner class SentenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textView: TextView
+    inner class SentenceViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+            LayoutContainer {
+
         lateinit var sentence: Sentence
 
         init {
-            textView = itemView.findViewById(android.R.id.text1)
-            itemView.setOnClickListener { listiner.showEditSentenceDialogListener(sentence) }
+            containerView.setOnClickListener { listiner.showEditSentenceDialogListener(sentence) }
         }
 
         fun bind(sentence: Sentence) {
             this.sentence = sentence
-            textView.text = sentence.sentence
+            tvSentence.text = sentence.sentence
         }
     }
 }

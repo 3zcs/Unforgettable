@@ -1,22 +1,25 @@
-package unforgettable.azcs.me.unforgettable
+package unforgettable.azcs.me.unforgettable.feature.edit_word
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_edit_word.*
+import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
+import unforgettable.azcs.me.unforgettable.adapters.SentenceAdapter
+import unforgettable.azcs.me.unforgettable.data.model.Sentence
+import unforgettable.azcs.me.unforgettable.data.model.Word
+import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
+import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 
 class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceDialogListiner, EditSentenceDialogFragment.onEditSentenceClickListener {
-    lateinit var mWord: EditText
-    lateinit var meaning: EditText
-    lateinit var sentenceList: RecyclerView
     lateinit var wordDatabase: DatabaseReference
     lateinit var sentences: MutableList<Sentence>
     internal var user: FirebaseUser? = null
@@ -26,19 +29,17 @@ class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceD
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_word)
-        mWord = findViewById(R.id.word)
-        meaning = findViewById(R.id.meaning)
-        sentenceList = findViewById(R.id.sentencesList)
+
         word = intent.getParcelableExtra("Word")
         user = FirebaseAuth.getInstance().currentUser
         wordDatabase = FirebaseDatabase.getInstance().getReference(user!!.uid)
 
-        mWord.setText(word!!.word)
-        meaning.setText(word!!.meaning)
-        sentenceList.layoutManager = LinearLayoutManager(this)
+        etWord.setText(word!!.word)
+        etMeaning.setText(word!!.meaning)
+        rvSentences.layoutManager = LinearLayoutManager(this)
         sentences = word!!.practice
         adapter = SentenceAdapter(this, sentences, this)
-        sentenceList.adapter = adapter
+        rvSentences.adapter = adapter
     }
 
 
@@ -52,9 +53,9 @@ class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceD
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save_word -> {
-                if (Utils.isValid(mWord) && Utils.isValid(meaning)) {
-                    val newWord = Word(word!!.id!!, mWord.text.toString(),
-                            meaning.text.toString(),
+                if (Utils.isValid(etWord) && Utils.isValid(etMeaning)) {
+                    val newWord = Word(word!!.id!!, etWord.text.toString(),
+                            etMeaning.text.toString(),
                             word!!.practice)
                     wordDatabase.child(word!!.id!!).setValue(newWord)
                     startActivity(Intent(this, MainActivity::class.java))

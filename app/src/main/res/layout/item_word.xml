@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/word"
+        android:id="@+id/tvWord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -19,7 +19,7 @@
         tools:text="Word" />
 
     <TextView
-        android:id="@+id/meaning"
+        android:id="@+id/tvMeaning"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -29,6 +29,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word"
+        app:layout_constraintTop_toBottomOf="@+id/tvWord"
         tools:text="meaning" />
 </android.support.constraint.ConstraintLayout>

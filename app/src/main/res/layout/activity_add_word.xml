@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="unforgettable.azcs.me.unforgettable.AddWordActivity">
+    tools:context=".feature.add_word.AddWordActivity">
 
     <EditText
-        android:id="@+id/word"
+        android:id="@+id/etWord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/meaning"
+        android:id="@+id/etMeaning"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -30,10 +30,10 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word" />
+        app:layout_constraintTop_toBottomOf="@+id/etWord" />
 
     <EditText
-        android:id="@+id/sentence"
+        android:id="@+id/etSentence"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -43,28 +43,28 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meaning" />
+        app:layout_constraintTop_toBottomOf="@+id/etMeaning" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/sentencesList"
+        android:id="@+id/RvSentences"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/addbtn"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sentence" />
+        app:layout_constraintTop_toBottomOf="@+id/etSentence" />
 
     <Button
-        android:id="@+id/addbtn"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Add"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
