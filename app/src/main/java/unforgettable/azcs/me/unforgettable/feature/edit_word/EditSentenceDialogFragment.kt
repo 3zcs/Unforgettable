@@ -3,6 +3,7 @@ package unforgettable.azcs.me.unforgettable.feature.edit_word
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +21,16 @@ class EditSentenceDialogFragment : DialogFragment() {
     lateinit var listener: onEditSentenceClickListener
     internal var sentence: Sentence? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.dialog_fragment_edit_sentence, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.AppDialogTheme)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.dialog_fragment_edit_sentence, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val args = arguments
@@ -76,5 +82,12 @@ class EditSentenceDialogFragment : DialogFragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val window = dialog.window
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window.setGravity(Gravity.CENTER)
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_login.*
 import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.Utils
@@ -61,9 +62,8 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
-                        Toast.makeText(this@LoginActivity, "Authentication failed.",
+                        Toasty.error(this@LoginActivity, task.exception!!.message.toString(),
                                 Toast.LENGTH_SHORT).show()
-                        updateUI(null)
                     }
 
                     // ...

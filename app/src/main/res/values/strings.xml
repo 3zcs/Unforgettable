@@ -13,4 +13,6 @@
     <string name="sentence">Sentence</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="word_deleted">Word has been deleted</string>
+    <string name="error">Something wrong!!</string>
 </resources>

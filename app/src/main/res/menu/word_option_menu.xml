@@ -11,10 +11,4 @@
         android:title="delete"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/add_sentence"
-        android:icon="@drawable/ic_sentence_add_24dp"
-        android:title="add sentence"
-        app:showAsAction="ifRoom" />
-
 </menu>

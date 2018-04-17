@@ -47,7 +47,7 @@ class AddWordActivity : AppCompatActivity() {
 
         sentenceIdRef = wordIdRef.push()
         val s = Sentence(etSentence.text.toString(), sentenceIdRef.key)
-        return Word(wordIdRef.key, etWord.text.toString(), etWord.text.toString(), object : ArrayList<Sentence>() {
+        return Word(wordIdRef.key, etWord.text.toString(), etMeaning.text.toString(), object : ArrayList<Sentence>() {
             init {
                 add(s)
             }

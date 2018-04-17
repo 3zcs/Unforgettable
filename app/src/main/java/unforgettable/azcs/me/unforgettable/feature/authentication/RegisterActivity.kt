@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_register.*
 import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.Utils
@@ -43,9 +44,8 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("RegisterActivity", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this@RegisterActivity, "Authentication failed.",
+                        Toasty.error(this@RegisterActivity, task.exception!!.message.toString(),
                                 Toast.LENGTH_SHORT).show()
-                        updateUI(null)
                     }
 
                     // ...

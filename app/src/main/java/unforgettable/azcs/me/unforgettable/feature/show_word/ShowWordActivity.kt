@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_show_word.*
 import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.Utils.WORD
@@ -39,16 +40,27 @@ class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, Senten
         mDatabase = FirebaseDatabase.getInstance().getReference(user!!.uid)
         if (intent.extras != null && intent.extras!!.containsKey(WORD)) {
             word = intent.getParcelableExtra(WORD)
-            tvWord.text = word!!.word
-            tvMeaning.text = word!!.meaning
+            textView_word.text = word!!.word
+            textView_meaning.text = word!!.meaning
+            setSupportActionBar(toolbar)
             rvSentences.layoutManager = LinearLayoutManager(this)
             sentenceList = word!!.practice
             adapter = SentenceAdapter(this, sentenceList, this)
             rvSentences.adapter = adapter
         } else {
-            Toast.makeText(this, "Error Happen", Toast.LENGTH_SHORT).show()
+            Toasty.error(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        FAB_addSentence.setOnClickListener({
+            val fm = supportFragmentManager
+            addSentenceDialogFragment = if (fm.findFragmentByTag("add") != null)
+                fm.findFragmentByTag("add") as AddSentenceDialogFragment
+            else
+                AddSentenceDialogFragment.newInstance()
+
+            addSentenceDialogFragment!!.show(fm, "add")
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -63,7 +75,7 @@ class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, Senten
             R.id.delete_word -> {
                 mDatabase = FirebaseDatabase.getInstance().getReference(user!!.uid).child(word!!.id!!)
                 mDatabase!!.removeValue()
-                Toast.makeText(this, "Your Data has been deleted", Toast.LENGTH_SHORT).show()
+                Toasty.success(this, getString(R.string.word_deleted), Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 return true
             }
@@ -71,16 +83,6 @@ class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, Senten
                 val intent = Intent(this, EditWordActivity::class.java)
                 intent.putExtra("Word", word)
                 startActivity(intent)
-                return true
-            }
-            R.id.add_sentence -> {
-                val fm = supportFragmentManager
-                if (fm.findFragmentByTag("add") != null)
-                    addSentenceDialogFragment = fm.findFragmentByTag("add") as AddSentenceDialogFragment
-                else
-                    addSentenceDialogFragment = AddSentenceDialogFragment.newInstance()
-
-                addSentenceDialogFragment!!.show(fm, "add")
                 return true
             }
             R.id.logout -> {
