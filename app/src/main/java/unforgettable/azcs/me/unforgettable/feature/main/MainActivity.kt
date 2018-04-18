@@ -17,16 +17,16 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.adapters.WordsAdapter
+import unforgettable.azcs.me.unforgettable.data.WordsViewModel
 import unforgettable.azcs.me.unforgettable.data.model.Word
 import unforgettable.azcs.me.unforgettable.feature.add_word.AddWordActivity
 import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
 
 class MainActivity : AppCompatActivity() {
-    internal val TAG = javaClass.simpleName
 
     lateinit var wordDatabase: DatabaseReference
     private var user: FirebaseUser? = null
-    lateinit var wordList: MutableList<Word>
+    lateinit var wordList: ArrayList<Word>
     lateinit var adapter: WordsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

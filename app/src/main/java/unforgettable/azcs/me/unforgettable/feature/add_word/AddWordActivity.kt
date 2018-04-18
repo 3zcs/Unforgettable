@@ -31,7 +31,7 @@ class AddWordActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance().currentUser!!
         btnAdd.setOnClickListener {
             if (Utils.isValid(etWord) && Utils.isValid(etMeaning)) {
-                myRef = database.getReference(user!!.uid)
+                myRef = database.getReference(user.uid)
                 wordIdRef = myRef.push()
                 myRef.child(wordIdRef.key).setValue(getWord())
                 startActivity(Intent(this@AddWordActivity, MainActivity::class.java))
