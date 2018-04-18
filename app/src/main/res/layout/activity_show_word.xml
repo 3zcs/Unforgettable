@@ -11,7 +11,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/height_200"
         android:layout_marginEnd="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,15 +22,15 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
+            android:layout_margin="@dimen/margin_8" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/margin_8"
             android:gravity="bottom"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="@dimen/padding_8">
 
             <TextView
                 android:id="@+id/textView_word"
@@ -43,7 +43,7 @@
                 android:id="@+id/textView_meaning"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_margin="@dimen/margin_8"
                 style="@style/GrayText"
                 tools:text="aaaaa" />
         </LinearLayout>
@@ -54,9 +54,9 @@
         android:id="@+id/FAB_addSentence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
         android:tint="@color/white"
         app:fabSize="auto"
         app:srcCompat="@drawable/ic_create_24dp"
