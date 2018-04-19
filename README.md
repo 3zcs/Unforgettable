@@ -2,6 +2,9 @@
 ### A side project for personal use, it saves and retrieves English word along with list of statement that used that word 
 <p align="center">
    <img src="https://user-images.githubusercontent.com/8222820/38894733-c4ad7032-4296-11e8-9750-83923e74e650.png" width="250">
+   <img src="https://user-images.githubusercontent.com/8222820/38974759-ecdb20b8-43b3-11e8-9af2-6c240c9c8949.gif" width="250">
+</p>
+<p align="center">
   <img src="https://user-images.githubusercontent.com/8222820/38894718-b9ef94e0-4296-11e8-9fb3-91da8686765d.png" width="250">
   <img src="https://user-images.githubusercontent.com/8222820/38894722-bd73145c-4296-11e8-9101-21893bbc0533.png" width="250">
 </p>
