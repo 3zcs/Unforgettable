@@ -18,12 +18,12 @@ import com.google.firebase.database.FirebaseDatabase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_show_word.*
 import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
 import unforgettable.azcs.me.unforgettable.Utils.WORD
 import unforgettable.azcs.me.unforgettable.adapters.SentenceAdapter
 import unforgettable.azcs.me.unforgettable.data.WordsViewModel
 import unforgettable.azcs.me.unforgettable.data.model.Sentence
 import unforgettable.azcs.me.unforgettable.data.model.Word
-import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
 import unforgettable.azcs.me.unforgettable.feature.edit_word.EditWordActivity
 import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 
@@ -108,9 +108,8 @@ class ShowWordActivity : AppCompatActivity(), onAddSentenceClickListener, Senten
                 return true
             }
             R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this, LoginActivity::class.java))
-                return true
+                return Utils.logout(this)
+
             }
         }
         return super.onOptionsItemSelected(item)

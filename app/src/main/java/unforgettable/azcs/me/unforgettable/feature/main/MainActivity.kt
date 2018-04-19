@@ -16,11 +16,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import unforgettable.azcs.me.unforgettable.R
+import unforgettable.azcs.me.unforgettable.Utils
 import unforgettable.azcs.me.unforgettable.adapters.WordsAdapter
 import unforgettable.azcs.me.unforgettable.data.WordsViewModel
 import unforgettable.azcs.me.unforgettable.data.model.Word
 import unforgettable.azcs.me.unforgettable.feature.add_word.AddWordActivity
-import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,9 +70,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this, LoginActivity::class.java))
-                return true
+                return Utils.logout(this)
+
             }
         }
         return super.onOptionsItemSelected(item)

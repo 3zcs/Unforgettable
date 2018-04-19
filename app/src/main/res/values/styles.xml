@@ -9,6 +9,14 @@
         <item name="buttonStyle">@style/ButtonStyle</item>
     </style>
 
+    <!-- Inverse application theme. -->
+    <style name="InverseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="background">@color/colorPrimary</item>
+        <item name="buttonStyle">@style/InverseButtonStyle</item>
+        <item name="editTextStyle">@style/EditTextStyle</item>
+    </style>
+
     <!-- NoActionBar theme. -->
     <style name="AppThemeWithoutActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -28,6 +36,17 @@
     <style name="ButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="InverseButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@color/white</item>
     </style>
 
     <!-- Text colors -->

@@ -17,11 +17,11 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_edit_word.*
 import unforgettable.azcs.me.unforgettable.R
 import unforgettable.azcs.me.unforgettable.Utils
+import unforgettable.azcs.me.unforgettable.Utils.logout
 import unforgettable.azcs.me.unforgettable.adapters.SentenceAdapter
 import unforgettable.azcs.me.unforgettable.data.WordsViewModel
 import unforgettable.azcs.me.unforgettable.data.model.Sentence
 import unforgettable.azcs.me.unforgettable.data.model.Word
-import unforgettable.azcs.me.unforgettable.feature.authentication.LoginActivity
 import unforgettable.azcs.me.unforgettable.feature.main.MainActivity
 
 class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceDialogListiner, EditSentenceDialogFragment.onEditSentenceClickListener {
@@ -84,9 +84,7 @@ class EditWordActivity : AppCompatActivity(), SentenceAdapter.IShowEditSentenceD
                 return true
             }
             R.id.logout -> {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this, LoginActivity::class.java))
-                return true
+                return logout(this)
             }
         }
         return super.onOptionsItemSelected(item)

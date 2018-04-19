@@ -8,7 +8,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="sign_in_suggestion">if you don&quot;t have account sign up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in_suggestion">if you&quot;re new user sign up</string>
     <string name="login_suggestion">if you have account login</string>
     <string name="sentence">Sentence</string>
     <string name="save">Save</string>
